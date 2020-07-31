@@ -1,6 +1,6 @@
 # Covid-19 Visualizer for University of South Florida
 
-• Partnered with a  to develop a dashboard to present COVID-19 cases on the University of South Florida (USF) campuses using python3 and the Plotly Dash framework. 
+• Developed a dashboard to present COVID-19 cases on the University of South Florida (USF) campuses using python3 and the Plotly Dash framework. 
 
 • Utilized BeautifulSoup4 and Pandas to web scrape the USF's Coronavirus website.
 
