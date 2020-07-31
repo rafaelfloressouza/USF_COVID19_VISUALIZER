@@ -1,2 +1,1 @@
-# COVID19 VISUALIZER FOR THE UNIVERISTY OF SOUTH FLORIDA
-
+# Covid-19 Visualizer for University of South Florida
