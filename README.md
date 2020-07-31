@@ -16,3 +16,5 @@
 
 Other Contributors:
     Adheesh Shenoy: @adheeshshenoy (https://github.com/adheeshenoy)
+
+![USF Covid Visualizer](https://user-images.githubusercontent.com/51538046/89087693-14a80480-d363-11ea-8fe3-09a4f87d3816.gif)
