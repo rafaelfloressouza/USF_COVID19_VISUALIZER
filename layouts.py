@@ -227,17 +227,6 @@ general_tabs = html.Div(
     ]
 )
 
-# Radio Item
-radio_item = dcc.RadioItems(
-    id='graph_type',
-    options=[
-        dict(label='Actual', value='actual'),
-        dict(label='Prediction', value='prediction')
-    ],
-    value='actual',
-    labelStyle={'display': 'inline-block'}
-)
-
 # Table Layout
 table = html.Div([
     html.H1('Data Table', id='table_header', style=dict(color=const.COLORS.DARK_GREEN, padding='2rem')),
@@ -271,7 +260,17 @@ USF_layout = html.Div([
     ], className='container-fluid'),
     html.Div([
         html.Div([
-            radio_item,
+
+            dbc.RadioItems( # Used to select between actual and prediction graphs.
+                options=[
+                    {"label": "Actual", "value": 'actual'},
+                    {"label": "Prediction", "value": 'prediction'},
+                ],
+                value='actual',
+                id="graph_type",
+                inline=True,
+                style=dict(marginLeft='4rem', marginTop='1rem'),
+            ),
             total_scatter_graph,
             daily_bar_graph,
         ])

@@ -3,9 +3,10 @@ import helper_functions as hf
 import pandas as pd
 from app import db
 from data import get_data
-from datetime import date, datetime
+from datetime import datetime
+from tzlocal import get_localzone
 
-sched = BlockingScheduler()
+sched = BlockingScheduler(timezone=get_localzone())
 
 class Predictions(db.Model):
     '''Defines a table for the database and the data types for its columns'''
@@ -23,11 +24,13 @@ class Predictions(db.Model):
         self.YHAT_HEALTH = YHAT_HEALTH
 
 
-@sched.scheduled_job('cron', day_of_week='mon-sun', hour=11, minute=59)
+@sched.scheduled_job('interval', hours=1)
 def get_predictions():
-    '''Function that runs once a week to calculte new predictions on the current data and store the predictions on a Postgres DB.'''
+    '''Function that runs once a week to calculte new predictions on the current data and stores the predictions on a Postgres DB.'''
 
-    print('UPDATING PREDICTION DATA AT ' + str(datetime.now()) + ' ~ ' + str(date.today()) + "\n\n\n")
+    now = datetime.now()
+    current_time = now.strftime("%H:%M:%S")
+    print('UPDATING PREDICTION DATA ' + str(datetime.today()) + ' AT ' + str(current_time) + "\n\n\n")
     df = get_data()
     location_list = hf.get_df_by_location(df)
     location_list = hf.format_dfs_for_prediction(location_list)
@@ -40,6 +43,5 @@ def get_predictions():
     new_df = new_df.rename(
         columns={'ds': 'DS', 'yhat_x': 'YHAT_TAMPA', 'yhat_y': 'YHAT_ST_PETE', 'yhat': 'YHAT_HEALTH'})
     new_df.to_sql('prediction', con=db.engine, if_exists='replace', index=False)
-
 
 sched.start()

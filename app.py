@@ -29,7 +29,8 @@ app._favicon = '/assets/favicon.ico'
 
 # SQLAlchemy
 app.server.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-app.server.config['SQLALCHEMY_DATABASE_URI'] = "postgres://dklnylfkfanqcg:5fc17b0733a2bdc958ff310c0577e2909753574a177ff033d8ee9306a9dff6fc@ec2-3-215-83-17.compute-1.amazonaws.com:5432/dq5q0b3f9djga"
+app.server.config[
+    'SQLALCHEMY_DATABASE_URI'] = "postgres://dklnylfkfanqcg:5fc17b0733a2bdc958ff310c0577e2909753574a177ff033d8ee9306a9dff6fc@ec2-3-215-83-17.compute-1.amazonaws.com:5432/dq5q0b3f9djga"
 db = SQLAlchemy(app.server)
 
 # Apps layout
@@ -90,6 +91,7 @@ def update_cards(data):
            hf.create_daily_cases_str(daily_cases_tampa), \
            hf.create_daily_cases_str(daily_cases_tampa_health), \
            hf.create_daily_cases_str(daily_cases_st_pete), \
+
 
 @app.callback([Output('daily-bar-graph', 'figure'),
                Output('total-scatter-graph', 'figure')],

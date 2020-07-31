@@ -127,7 +127,7 @@ def get_prediction(df):
     '''Returns a data frame containing a prediction of the # of cases in the specified future period of time'''
     m = Prophet()
     m.fit(df)
-    future = m.make_future_dataframe(periods=10)
+    future = m.make_future_dataframe(periods=50)
     forecast = m.predict(future)
     return forecast[['ds', 'yhat']]
 
